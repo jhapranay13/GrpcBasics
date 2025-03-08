@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package sec04;
+
+option java_package = "com.models.sec04";
+option java_multiple_files = true;
+
+message Product {
+    string name = 1;
+    int32 id = 2;
+}
+
+message ProductV1 {
+  string name = 1;
+  int32 id = 2;
+  float price = 3;
+}
+
+message ProductV2 {
+  string name = 1;
+  reserved 2; // comma separated list of field numbers
+  reserved "id"; // comma separated list of field names
+  float price = 3;
+}

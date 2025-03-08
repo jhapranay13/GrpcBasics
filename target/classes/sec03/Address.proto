@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package sec03;
+
+option java_multiple_files = true;
+option java_package = "com.models.sec03";
+
+message Address {
+  optional string street = 1; /*For has method */
+  string city = 2;
+  string state = 3;
+}
+
+// reserved keyword for backword compatibilty. Read about it

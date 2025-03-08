@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package sec08;
+
+option java_package = "com.models.sec08";
+option java_multiple_files = true;
+
+message BalanceCheckRequest {
+    int32 account_number = 1;
+}
+
+message AccountBalance {
+    int32 account_number = 1;
+    int32 balance = 2;
+}
+
+message WithdrawalRequest {
+    int32 account_number = 1;
+    int32 amount = 2;
+}
+
+message Money {
+    int32 amount = 2;
+}
+
+enum ValidationCode {
+    INVALID_ACCOUNT = 0;
+    INVALID_AMOUNT = 1;
+    INSUFFICIENT_BALANCE = 2;
+}
+
+message ErrorMessage {
+    ValidationCode code = 1;
+
+}
+
+/*
+Validation to implement.
+1. Check if the account number is between 1 and 10
+ */
+service TransactionService {
+    rpc checkBalance(BalanceCheckRequest) returns (AccountBalance);
+    /*
+    Validation to implement.
+    1. Check if the account number is between 1 and 10
+    2. Check if the amount is multiple of 10
+    3. Account should have minimum balance
+     */
+    rpc withdraw(WithdrawalRequest) returns (stream Money);
+}
